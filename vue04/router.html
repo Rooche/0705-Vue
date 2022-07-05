@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>
+</head>
+<body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const router = new VueRouter({
+        routes : [
+          { path : '/foo', //path는 경로라고 생각.
+            component : { 
+            template : '<div>foo</div>'
+            }
+          },
+          {
+            path : '/bar',
+            component : {
+              template : '<div>bar</div>'
+            }
+          },
+          {
+            path: '/user/:id',
+            component : {
+              template : `<div>User {{this.$route.params.id}}</div>`
+            }
+          }
+        ]
+      })
+
+      new Vue({
+        router
+      }).$mount('#app');
+    });
+  </script>
+  <div id="app">
+    <h1>Hello App !</h1>
+    <p>
+      <router-link to="/foo">GO to Foo</router-link>
+      <router-link to="/bar">GO to Bar</router-link>
+      <router-link to="/user/1234">Go to User</router-link>
+    </p>
+    <router-view></router-view>
+  </div>
+</body>
+</html>
